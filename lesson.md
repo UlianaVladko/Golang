@@ -6,3 +6,11 @@ git init
 
 git status
 ```
+
+## Text formatting
+
+*cours*
+
+**bold**
+
+__*bold*__
