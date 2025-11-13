@@ -1,5 +1,16 @@
 package main
 
+// //Фишка, вывести ядерку своего ноутбука
+// import (
+// 	"fmt"
+// 	"strconv"
+// )
+
+// func main() {
+// 	fmt.Println(strconv.IntSize)
+// }
+
+
 import (
 	"fmt"
 	"time"
