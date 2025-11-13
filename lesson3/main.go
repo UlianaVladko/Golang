@@ -10,6 +10,16 @@ package main
 // 	fmt.Println(strconv.IntSize)
 // }
 
+// //Еще фишка, вывести максимальное значения типа переменной
+// import (
+// 	"fmt"
+// 	"math"
+// )
+
+// func main() {
+// 	fmt.Println(math.MaxFloat64)
+// 	fmt.Println(math.MaxInt8)
+// }
 
 import (
 	"fmt"
