@@ -1,9 +1,87 @@
+
+/*Задача1
+	Написать программу на ЯП Go с следующей логикой:
+	Принять на вход (bufio.NewReader) от пользователя Имя, фамилию полностью. $ Александр Сергеев
+	Реализовать с помощью функции! Александр Сергеев -> Александр С.
+	Учесть: АЛЕКСАНДР СЕРГЕЕВ, александр сергеев
+	Все транслитом!
+*/
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+	"unicode"
+)
 
-func main()  {
+func reverseSliceInPlace(words []string) {
+	for i, j := 0, len(words)-1; i < j; i, j = i+1, j-1 {
+		words[i], words[j] = words[j], words[i]
+	}
+}
+
+func formatName(fullName string) string {
+	words := strings.Fields(fullName)
+	if len(words) == 0 {
+		return ""
+	}
 	
+	reverseSliceInPlace(words)
+
+	var result strings.Builder
+	
+	// // имя
+	// nameRunes := []rune(words[0])
+	// if len(nameRunes) > 0 {
+	// 	result.WriteRune(unicode.ToUpper(nameRunes[0]))
+	// 	for i := 1; i < len(nameRunes); i++ {
+	// 		result.WriteRune(unicode.ToLower(nameRunes[i]))
+	// 	}
+	// }
+
+	if len(words) > 0 {
+		nameRunes := []rune(words[0])
+		if len(nameRunes) > 0 {
+			result.WriteRune(unicode.ToUpper(nameRunes[0]))
+			for i := 1; i < len(nameRunes); i++ {
+				result.WriteRune(unicode.ToLower(nameRunes[i]))
+			}
+		}
+	}
+	
+	// // фамилия
+	// if len(words) > 1 {
+	// 	result.WriteString(" ")
+	// 	lastNameRunes := []rune(words[1])
+	// 	if len(lastNameRunes) > 0 {
+	// 		result.WriteRune(unicode.ToUpper(lastNameRunes[0]))
+	// 		result.WriteString(".")
+	// 	}
+	// }
+
+	if len(words) > 1 {
+		result.WriteString(" ")
+		lastNameRunes := []rune(words[1])
+		if len(lastNameRunes) > 0 {
+			result.WriteRune(unicode.ToUpper(lastNameRunes[0]))
+			result.WriteString(".")
+		}
+	}
+	
+	return result.String()
+}
+
+func main() {
+	reader := bufio.NewReader(os.Stdin)
+	
+	fmt.Print("Введите имя и фамилию: ")
+	input, _ := reader.ReadString('\n')
+	input = strings.TrimSpace(input)
+	
+	result := formatName(input)
+	fmt.Println(result)
 }
 
 // func Cube(x int) (res int) {
