@@ -39,6 +39,7 @@ func (e *Executor) RunGoroutine(index int, duration time.Duration) {
 	}(index, duration)
 }
 
+// https://pkg.go.dev/sync#WaitGroup.Wait
 func (e *Executor) WaitAll() {
 	e.wg.Wait()
 }
