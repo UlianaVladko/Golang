@@ -8,6 +8,15 @@ import (
 	"time"
 )
 
+/*
+// функция для обработки ошибки (но не надо всегда так делать!!!)
+// каждая ошибка должна обрабатываться ПО-СВОЕМУ!!!!
+func getErr(err error) {
+	if err != nil {
+		fmt.Println(err)
+	}
+}*/
+
 func main() {
 	// response, err := http.Get("http://127.0.0.1:8080/")
 	// if err != nil {
@@ -22,6 +31,7 @@ func main() {
 
 	request, err := http.NewRequest(http.MethodPost, "http://127.0.0.1:8080/", bytes.NewBuffer(data))
 
+	// getErr(err)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -30,6 +40,7 @@ func main() {
 	request.Header.Set("Cookie", "123456789")
 
 	response, err := client.Do(request)
+	// getErr(err)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -37,6 +48,7 @@ func main() {
 	defer response.Body.Close()
 
 	body, err := io.ReadAll(response.Body)
+	// getErr(err)
 	if err != nil {
 		fmt.Println(err)
 	}
