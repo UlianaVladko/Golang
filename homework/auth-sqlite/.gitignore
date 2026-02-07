@@ -1,0 +1,4 @@
+users.db
+*.exe
+.idea/
+.vscode/
